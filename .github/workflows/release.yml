@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore AntiSlowPlugin.csproj
+
+      - name: Build
+        run: dotnet build AntiSlowPlugin.csproj -c Release --no-restore
+
+      - name: Create release archive
+        run: |
+          mkdir -p dist
+          cd addons
+          zip -r ../dist/AntiSlowPlugin-${{ github.ref_name }}.zip .
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/AntiSlowPlugin-${{ github.ref_name }}.zip
+          generate_release_notes: true

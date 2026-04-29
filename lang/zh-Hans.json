@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} 访问被拒绝。所需权限：{yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} 用法：{yellow}!antislow <玩家名> [回合数] [原因]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} 用法：{yellow}!unantislow <玩家名>{default}",
+
+  "antislow.player.notfound":        " {red}[AntiSlow]{default} 未找到名为 \"{yellow}{0}{default}\" 的玩家。",
+  "antislow.player.ambiguous":       " {red}[AntiSlow]{default} 多个玩家匹配 \"{yellow}{0}{default}\"：",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":      " 请更精确地指定。",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} 目标玩家无效。",
+
+  "antislow.blocked.notfound":  " {red}[AntiSlow]{default} 已屏蔽列表中未找到 \"{yellow}{0}{default}\"。",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} 已屏蔽列表中有多个玩家匹配：",
+  "antislow.notblocked":        " {red}[AntiSlow]{default} {yellow}{0}{default} 未被屏蔽。",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} 当前没有被屏蔽的玩家。",
+  "antislow.list.header": " {red}[AntiSlow]{default} 已屏蔽玩家（{yellow}{0}{default}）：",
+  "antislow.list.rounds.permanent": "{red}永久{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} 回合",
+  "antislow.list.entry": "   {yellow}{0}{default} – {1}{2}",
+
+  "antislow.suffix.rounds": " 持续 {green}{0}{default} 回合",
+  "antislow.suffix.reason": " | 原因：{red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} 屏蔽了 {yellow}{1}{default} 的慢走{2}{3}。",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} 解除了 {yellow}{1}{default} 的慢走屏蔽。",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} {yellow}{0}{default} 的慢走已恢复（回合计时器到期）。"
+}

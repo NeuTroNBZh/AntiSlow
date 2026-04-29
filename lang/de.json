@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} Zugriff verweigert. Benötigte Berechtigung: {yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} Verwendung: {yellow}!antislow <Name> [Runden] [Grund]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} Verwendung: {yellow}!unantislow <Name>{default}",
+
+  "antislow.player.notfound":        " {red}[AntiSlow]{default} Kein Spieler für \"{yellow}{0}{default}\" gefunden.",
+  "antislow.player.ambiguous":       " {red}[AntiSlow]{default} Mehrere Spieler entsprechen \"{yellow}{0}{default}\":",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":      " Bitte präzisieren Sie.",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} Zielspieler ist ungültig.",
+
+  "antislow.blocked.notfound":  " {red}[AntiSlow]{default} Kein gesperrter Spieler entspricht \"{yellow}{0}{default}\".",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} Mehrere gesperrte Spieler entsprechen:",
+  "antislow.notblocked":        " {red}[AntiSlow]{default} {yellow}{0}{default} ist nicht gesperrt.",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} Derzeit sind keine Spieler gesperrt.",
+  "antislow.list.header": " {red}[AntiSlow]{default} Gesperrte Spieler ({yellow}{0}{default}):",
+  "antislow.list.rounds.permanent": "{red}permanent{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} Runde(n)",
+  "antislow.list.entry": "   {yellow}{0}{default} – {1}{2}",
+
+  "antislow.suffix.rounds": " für {green}{0}{default} Runde(n)",
+  "antislow.suffix.reason": " | Grund: {red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} hat den Slow-Walk von {yellow}{1}{default} gesperrt{2}{3}.",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} hat den Slow-Walk von {yellow}{1}{default} entsperrt.",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} Slow-Walk für {yellow}{0}{default} ist wieder erlaubt (Rundenzeit abgelaufen)."
+}

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Cible .NET 8.0 comme requis par CounterStrikeSharp -->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>AntiSlowPlugin</AssemblyName>
+    <RootNamespace>AntiSlowPlugin</RootNamespace>
+    <!-- Pas de copie des DLL de dépendances dans le dossier de sortie -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <!--
+      Dossier de sortie : structure de release prête à déployer.
+      Le DLL compilé atterrit directement dans
+        addons/counterstrikesharp/plugins/AntiSlowPlugin/
+    -->
+    <OutputPath>addons\counterstrikesharp\plugins\AntiSlowPlugin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Référence NuGet : CounterStrikeSharp API (dernière version stable).
+      Ne pas inclure dans le build final car déjà présente sur le serveur.
+    -->
+    <PackageReference Include="CounterStrikeSharp.API" Version="*">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Fichiers de langues : copiés dans lang/ à côté du DLL au build -->
+  <ItemGroup>
+    <Content Include="lang\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

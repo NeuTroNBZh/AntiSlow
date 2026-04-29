@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} Access denied. Required permission: {yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} Usage: {yellow}!antislow <name> [rounds] [reason]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} Usage: {yellow}!unantislow <name>{default}",
+
+  "antislow.player.notfound":      " {red}[AntiSlow]{default} No player found for \"{yellow}{0}{default}\".",
+  "antislow.player.ambiguous":     " {red}[AntiSlow]{default} Multiple players match \"{yellow}{0}{default}\":",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":    " Please be more specific.",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} Target player is invalid.",
+
+  "antislow.blocked.notfound": " {red}[AntiSlow]{default} No blocked player matches \"{yellow}{0}{default}\".",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} Multiple blocked players match:",
+  "antislow.notblocked":       " {red}[AntiSlow]{default} {yellow}{0}{default} is not blocked.",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} No players are currently blocked.",
+  "antislow.list.header": " {red}[AntiSlow]{default} Blocked players ({yellow}{0}{default}):",
+  "antislow.list.rounds.permanent": "{red}permanent{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} round(s)",
+  "antislow.list.entry": "   {yellow}{0}{default} \u2013 {1}{2}",
+
+  "antislow.suffix.rounds": " for {green}{0}{default} round(s)",
+  "antislow.suffix.reason": " | Reason: {red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} blocked slow-walk for {yellow}{1}{default}{2}{3}.",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} unblocked slow-walk for {yellow}{1}{default}.",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} Slow-walk for {yellow}{0}{default} is allowed again (round timer expired)."
+}

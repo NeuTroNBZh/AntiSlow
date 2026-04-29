@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} Доступ запрещён. Необходимо разрешение: {yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} Использование: {yellow}!antislow <имя> [раунды] [причина]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} Использование: {yellow}!unantislow <имя>{default}",
+
+  "antislow.player.notfound":        " {red}[AntiSlow]{default} Игрок \"{yellow}{0}{default}\" не найден.",
+  "antislow.player.ambiguous":       " {red}[AntiSlow]{default} Несколько игроков соответствуют \"{yellow}{0}{default}\":",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":      " Уточните запрос.",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} Целевой игрок недействителен.",
+
+  "antislow.blocked.notfound":  " {red}[AntiSlow]{default} Среди заблокированных нет игрока \"{yellow}{0}{default}\".",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} Несколько заблокированных игроков соответствуют запросу:",
+  "antislow.notblocked":        " {red}[AntiSlow]{default} {yellow}{0}{default} не заблокирован.",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} В настоящее время нет заблокированных игроков.",
+  "antislow.list.header": " {red}[AntiSlow]{default} Заблокированные игроки ({yellow}{0}{default}):",
+  "antislow.list.rounds.permanent": "{red}навсегда{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} раунд(ов)",
+  "antislow.list.entry": "   {yellow}{0}{default} – {1}{2}",
+
+  "antislow.suffix.rounds": " на {green}{0}{default} раунд(ов)",
+  "antislow.suffix.reason": " | Причина: {red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} заблокировал slow-walk для {yellow}{1}{default}{2}{3}.",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} разблокировал slow-walk для {yellow}{1}{default}.",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} Slow-walk для {yellow}{0}{default} снова разрешён (таймер раундов истёк)."
+}

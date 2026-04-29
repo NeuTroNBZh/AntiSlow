@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+addons/
+
+# Local release artifacts
+release/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db

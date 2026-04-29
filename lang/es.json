@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} Acceso denegado. Permiso requerido: {yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} Uso: {yellow}!antislow <nombre> [rondas] [razón]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} Uso: {yellow}!unantislow <nombre>{default}",
+
+  "antislow.player.notfound":        " {red}[AntiSlow]{default} No se encontró ningún jugador para \"{yellow}{0}{default}\".",
+  "antislow.player.ambiguous":       " {red}[AntiSlow]{default} Varios jugadores coinciden con \"{yellow}{0}{default}\":",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":      " Sea más específico.",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} El jugador objetivo no es válido.",
+
+  "antislow.blocked.notfound":  " {red}[AntiSlow]{default} Ningún jugador bloqueado coincide con \"{yellow}{0}{default}\".",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} Varios jugadores bloqueados coinciden:",
+  "antislow.notblocked":        " {red}[AntiSlow]{default} {yellow}{0}{default} no está bloqueado.",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} No hay jugadores bloqueados actualmente.",
+  "antislow.list.header": " {red}[AntiSlow]{default} Jugadores bloqueados ({yellow}{0}{default}):",
+  "antislow.list.rounds.permanent": "{red}permanente{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} ronda(s)",
+  "antislow.list.entry": "   {yellow}{0}{default} – {1}{2}",
+
+  "antislow.suffix.rounds": " por {green}{0}{default} ronda(s)",
+  "antislow.suffix.reason": " | Razón: {red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} bloqueó el slow-walk de {yellow}{1}{default}{2}{3}.",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} desbloqueó el slow-walk de {yellow}{1}{default}.",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} El slow-walk de {yellow}{0}{default} está permitido nuevamente (temporizador de rondas expirado)."
+}

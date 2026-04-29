@@ -1,0 +1,30 @@
+{
+  "antislow.noperm": " {red}[AntiSlow]{default} Accès refusé. Permission requise : {yellow}@css/kick{default}",
+
+  "antislow.usage.antislow":   " {red}[AntiSlow]{default} Usage : {yellow}!antislow <nom> [rounds] [raison]{default}",
+  "antislow.usage.unantislow": " {red}[AntiSlow]{default} Usage : {yellow}!unantislow <nom>{default}",
+
+  "antislow.player.notfound":        " {red}[AntiSlow]{default} Aucun joueur trouvé pour \"{yellow}{0}{default}\".",
+  "antislow.player.ambiguous":       " {red}[AntiSlow]{default} Plusieurs joueurs correspondent à \"{yellow}{0}{default}\" :",
+  "antislow.player.ambiguous.entry": "   › {yellow}{0}{default}",
+  "antislow.player.bespecific":      " Soyez plus précis.",
+
+  "antislow.target.invalid":   " {red}[AntiSlow]{default} Le joueur cible est invalide.",
+
+  "antislow.blocked.notfound":  " {red}[AntiSlow]{default} Aucun joueur bloqué ne correspond à \"{yellow}{0}{default}\".",
+  "antislow.blocked.ambiguous": " {red}[AntiSlow]{default} Plusieurs joueurs bloqués correspondent :",
+  "antislow.notblocked":        " {red}[AntiSlow]{default} {yellow}{0}{default} n'est pas bloqué.",
+
+  "antislow.list.empty":  " {red}[AntiSlow]{default} Aucun joueur n'est actuellement bloqué.",
+  "antislow.list.header": " {red}[AntiSlow]{default} Joueurs bloqués ({yellow}{0}{default}) :",
+  "antislow.list.rounds.permanent": "{red}permanent{default}",
+  "antislow.list.rounds.count":     "{yellow}{0}{default} round(s)",
+  "antislow.list.entry": "   {yellow}{0}{default} – {1}{2}",
+
+  "antislow.suffix.rounds": " pendant {green}{0}{default} round(s)",
+  "antislow.suffix.reason": " | Raison : {red}{0}{default}",
+
+  "antislow.chat.blocked":   " {red}[AntiSlow]{default} {yellow}{0}{default} a bloqué le slow de {yellow}{1}{default}{2}{3}.",
+  "antislow.chat.unblocked": " {red}[AntiSlow]{default} {yellow}{0}{default} a débloqué le slow de {yellow}{1}{default}.",
+  "antislow.chat.expired":   " {red}[AntiSlow]{default} Le slow de {yellow}{0}{default} est de nouveau autorisé (timer de rounds expiré)."
+}
