@@ -3,7 +3,7 @@
 //  Plugin Counter-Strike 2 – Bloque le slow-walk (Shift) des joueurs ciblés.
 //
 //  Auteur  : NeuTroNBZh
-//  Version : 1.1.5
+//  Version : 1.1.6
 //  Cadre   : CounterStrikeSharp (.NET 8)
 //  Version standalone : aucune dépendance externe à CS2-SimpleAdminApi.dll
 // =============================================================================
@@ -53,7 +53,7 @@ public class AntiSlowPlugin : BasePlugin
     // --- Métadonnées du plugin -----------------------------------------------
 
     public override string ModuleName        => "AntiSlow";
-    public override string ModuleVersion     => "1.1.5";
+    public override string ModuleVersion     => "1.1.6";
     public override string ModuleAuthor      => "NeuTroNBZh";
     public override string ModuleDescription => "Bloque le slow-walk (Shift) des joueurs ciblés.";
 
@@ -217,6 +217,29 @@ public class AntiSlowPlugin : BasePlugin
         ref var buttonDoublePressed = ref movementServices.ButtonDoublePressed;
         if ((buttonDoublePressed & blockMask) != 0)
             buttonDoublePressed &= ~blockMask;
+
+        // Forçage moteur: neutralise explicitement l'état "walking" et
+        // restaure le modificateur de vitesse standard.
+        if (pawn is CCSPlayerPawn playerPawn)
+        {
+            ref var isWalking = ref playerPawn.IsWalking;
+            if (isWalking)
+                isWalking = false;
+
+            ref var velocityModifier = ref playerPawn.VelocityModifier;
+            if (velocityModifier < 1.0f)
+                velocityModifier = 1.0f;
+        }
+
+        // Supprime le ralentissement lié à l'endurance et garantit un plafond
+        // de vitesse minimum normal.
+        ref var stamina = ref movementServices.Stamina;
+        if (stamina > 0.0f)
+            stamina = 0.0f;
+
+        ref var maxspeed = ref movementServices.Maxspeed;
+        if (maxspeed < 250.0f)
+            maxspeed = 250.0f;
     }
 
     // =========================================================================
