@@ -3,7 +3,7 @@
 //  Plugin Counter-Strike 2 – Bloque le slow-walk (Shift) des joueurs ciblés.
 //
 //  Auteur  : NeuTroNBZh
-//  Version : 1.1.0
+//  Version : 1.1.5
 //  Cadre   : CounterStrikeSharp (.NET 8)
 //  Version standalone : aucune dépendance externe à CS2-SimpleAdminApi.dll
 // =============================================================================
@@ -53,7 +53,7 @@ public class AntiSlowPlugin : BasePlugin
     // --- Métadonnées du plugin -----------------------------------------------
 
     public override string ModuleName        => "AntiSlow";
-    public override string ModuleVersion     => "1.1.1";
+    public override string ModuleVersion     => "1.1.5";
     public override string ModuleAuthor      => "NeuTroNBZh";
     public override string ModuleDescription => "Bloque le slow-walk (Shift) des joueurs ciblés.";
 
@@ -85,8 +85,15 @@ public class AntiSlowPlugin : BasePlugin
         AddCommand("css_unantislow",   "Débloque le slow-walk d'un joueur.",            OnUnAntiSlowCommand);
         AddCommand("css_antislowlist", "Liste les joueurs dont le slow est bloqué.",    OnAntiSlowListCommand);
 
-        // --- Listener de tick : suppression de l'input Speed en temps réel ---
+        // Listener principal recommandé: boutons joueur changés (pre-think).
+        RegisterListener<Listeners.OnPlayerButtonsChanged>(OnPlayerButtonsChanged);
+
+        // --- Listener de tick : fallback pour certains builds CSS/API ---
         RegisterListener<Listeners.OnTick>(OnTick);
+
+        // Fallback tardif: exécuter après la passe d'entités pour couvrir
+        // les cas où un autre système réécrit les états de boutons.
+        RegisterListener<Listeners.OnServerPostEntityThink>(OnServerPostEntityThink);
 
         // --- Hook fin de round : gestion du décompte des rounds ---------------
         RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
@@ -95,6 +102,17 @@ public class AntiSlowPlugin : BasePlugin
         RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
 
         Logger.LogInformation("[AntiSlow] Plugin chargé avec succès.");
+    }
+
+    /// <summary>
+    /// Listener appelé quand les boutons d'un joueur changent.
+    /// On neutralise Walk/Zoom immédiatement pour éviter le slow-walk.
+    /// Selon les versions du moteur, la touche de marche peut remonter sur
+    /// l'un ou l'autre flag.
+    /// </summary>
+    private void OnPlayerButtonsChanged(CCSPlayerController player, PlayerButtons pressed, PlayerButtons released)
+    {
+        ApplyAntiSlowMasks(player);
     }
 
     public override void Unload(bool hotReload)
@@ -127,22 +145,78 @@ public class AntiSlowPlugin : BasePlugin
             if (!_blockedPlayers.ContainsKey(player.SteamID))
                 continue;
 
-            // Accès au pawn du joueur
-            var pawn = player.PlayerPawn?.Value;
-            if (pawn == null)
-                continue;
-
-            // Récupération des services de mouvement (cast nécessaire depuis la classe de base)
-            var movementServices = pawn.MovementServices as CCSPlayer_MovementServices;
-            if (movementServices == null)
-                continue;
-
-            // Si le flag Speed (Shift) est actif, le retirer des inputs
-            if ((movementServices.Buttons.ButtonStates[0] & (ulong)PlayerButtons.Speed) != 0)
-            {
-                movementServices.Buttons.ButtonStates[0] &= ~(ulong)PlayerButtons.Speed;
-            }
+            ApplyAntiSlowMasks(player);
         }
+    }
+
+    /// <summary>
+    /// Fallback tardif exécuté après le think des entités.
+    /// Utile si un autre plugin/système réintroduit Walk/Zoom après notre OnTick.
+    /// </summary>
+    private void OnServerPostEntityThink()
+    {
+        if (_blockedPlayers.Count == 0)
+            return;
+
+        foreach (var player in Utilities.GetPlayers())
+        {
+            if (!player.IsValid || player.IsBot || !player.PawnIsAlive)
+                continue;
+
+            if (!_blockedPlayers.ContainsKey(player.SteamID))
+                continue;
+
+            ApplyAntiSlowMasks(player);
+        }
+    }
+
+    /// <summary>
+    /// Nettoie toutes les représentations connues des boutons Walk/Zoom
+    /// dans les services de mouvement.
+    /// </summary>
+    private static void ApplyAntiSlowMasks(CCSPlayerController player)
+    {
+        if (!player.IsValid || player.IsBot || !player.PawnIsAlive)
+            return;
+
+        var pawn = player.PlayerPawn?.Value;
+        if (pawn == null)
+            return;
+
+        var movementServices = pawn.MovementServices as CCSPlayer_MovementServices;
+        if (movementServices == null)
+            return;
+
+        var blockMask = (ulong)(PlayerButtons.Walk | PlayerButtons.Zoom);
+
+        // Masques principaux de boutons (inclut les états subtick)
+        var buttonStates = movementServices.Buttons.ButtonStates;
+        for (var i = 0; i < buttonStates.Length; i++)
+        {
+            if ((buttonStates[i] & blockMask) != 0)
+                buttonStates[i] &= ~blockMask;
+        }
+
+        // Masques internes utilisés par la pipeline d'input du moteur
+        ref var queuedButtonDownMask = ref movementServices.QueuedButtonDownMask;
+        if ((queuedButtonDownMask & blockMask) != 0)
+            queuedButtonDownMask &= ~blockMask;
+
+        ref var queuedButtonChangeMask = ref movementServices.QueuedButtonChangeMask;
+        if ((queuedButtonChangeMask & blockMask) != 0)
+            queuedButtonChangeMask &= ~blockMask;
+
+        ref var toggleButtonDownMask = ref movementServices.ToggleButtonDownMask;
+        if ((toggleButtonDownMask & blockMask) != 0)
+            toggleButtonDownMask &= ~blockMask;
+
+        ref var buttonDownMaskPrev = ref movementServices.ButtonDownMaskPrev;
+        if ((buttonDownMaskPrev & blockMask) != 0)
+            buttonDownMaskPrev &= ~blockMask;
+
+        ref var buttonDoublePressed = ref movementServices.ButtonDoublePressed;
+        if ((buttonDoublePressed & blockMask) != 0)
+            buttonDoublePressed &= ~blockMask;
     }
 
     // =========================================================================
